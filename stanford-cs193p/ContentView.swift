@@ -9,39 +9,77 @@ import SwiftUI
 
 struct ContentView: View {
     let emojis: [String] = ["👻", "🎃", "💀", "😈", "🧛‍♀️", "🦄", "🦖"]
+    @State var cardCount = 7;
     
     var body: some View {
         VStack {
+            cards
             HStack {
-                ForEach(emojis.indices, id: \.self) { index in
-                    CardView(content: emojis[index], isFaceUp: false)
-                }
+                cardAdder
+                Spacer()
+                cardRemover
             }
-            HStack {
-                Button("plus.bubble.fill") {
-                    
-                }
-            }
+            .font(.largeTitle)
         }
         .padding()
+    }
+    
+    var cards: some View {
+        HStack {
+            ForEach(0..<cardCount, id: \.self) { index in
+                CardView(content: emojis[index], isFaceUp: false)
+            }
+        }
+    }
+    
+    var cardAdder: some View {
+        Button(action: {
+            adjustCardCount(by: 1)
+        }, label: {
+            Image(systemName: "rectangle.stack.fill.badge.plus")
+        })
+    }
+    
+    var cardRemover: some View {
+        Button(action: {
+            adjustCardCount(by: -1)
+        }, label: {
+            Image(systemName: "rectangle.stack.fill.badge.minus")
+        })
+    }
+    
+    func adjustCardCount(by offset: Int) {
+        if (cardCount + offset > 0 && cardCount + offset < emojis.count) {
+            cardCount += offset
+        }
     }
 }
 
 struct CardView: View {
     let content: String
-    var isFaceUp = false
+    @State var rotation = 0.0
+    @State var isFaceUp = false
     
     var body: some View {
         ZStack {
-            let base = RoundedRectangle(cornerRadius: 10)
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(Color.orange)
+                .fill(isFaceUp ? .white : .orange)
+                .rotation3DEffect(
+                    Angle.degrees(rotation),
+                    axis: (x: 0, y: 1, z: 0)
+                )
+                .onTapGesture {
+                    withAnimation(.linear(duration: 0.3)) {
+                        rotation += 180
+                        isFaceUp.toggle()
+                    }
+                }
             if isFaceUp {
-                base.stroke(Color.orange)
-                base.fill(.white)
                 Text(content)
             }
-            else {
-                base.fill(Color.orange)
-            }
+        }.onTapGesture {
+            isFaceUp.toggle()
         }
     }
 }
