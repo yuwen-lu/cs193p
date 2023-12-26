@@ -15,3 +15,10 @@ struct stanford_cs193pApp: App {
         }
     }
 }
+
+
+struct stanford_cs193pApp_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
