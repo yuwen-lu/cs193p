@@ -1,0 +1,74 @@
+# Xcode
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Xcode
+*.pbxuser
+*.xccheckout
+*.xcuserstate
+
+# Xcode build output
+build/
+DerivedData/
+
+# Xcode private configuration
+*.xcscmblueprint
+
+# Xcode previews
+*.swiftpm/xcode/package.xcworkspace
+
+# Swift Package Manager
+.build/
+
+# CocoaPods
+Pods/
+Podfile.lock
+
+# Carthage
+Carthage/Build
+
+# fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# Code Injection
+injectionforxcode/
+
+# User settings
+*.moved-aside
+
+# JetBrains
+*.iml
+.idea/
+
+# OS X
+.DS_Store
+
+# Archives
+*.zip
+*.tar
+*.gz
+*.bz2
+*.xz
+
